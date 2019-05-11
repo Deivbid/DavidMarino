@@ -3,24 +3,24 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Send from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import { styles } from './styles';
 //Redux
-import { updateInputMessage, addSentList } from '../../actions/';
+import { updateInputMessage, addSentList, isSent} from '../../actions/';
 import { connect } from 'react-redux';
 
-import Downshift from 'downshift';
-
-import { AutoComplete } from '../../components/AutoComplete'
+import { AutoComplete } from '../../components/AutoComplete';
+import swal from 'sweetalert';
+//Router
+import { Redirect } from 'react-router';
 
 const Detail = (props) => {
 	const { 
-		classes, 
-		name, 
+		classes,
 		subject, 
 		text,
-		isNew } = props
+		newie,
+		redirect } = props
 
 	const handleChange = (name) => (event) => {
     props.updateInputMessage(name, event.target.value)
@@ -34,7 +34,18 @@ const Detail = (props) => {
   		message: text,
   		email: 'test@prueba.com'
   	}
-  	props.addSentList([...sentList.list, obj])
+  	if(name === '' || subject === '' || text === ''){
+  		swal("Error!", "Debes llenar todos los campos", "error");
+  	}
+  	else{
+  		swal("Bien Hecho", "Tu mensaje ha sido envaido", "success");
+  		props.addSentList([...sentList.list, obj])
+  		props.isSent(true)
+  	}  	
+  }
+
+  if(redirect){
+  	return <Redirect to="/main/inbox"/>
   }
 
   return (
@@ -68,7 +79,7 @@ const Detail = (props) => {
 			        label="Asunto"
 			        variant="outlined"
 			        id="custom-css-outlined-input"
-			        defaultValue={isNew ? '' : subject}
+			        defaultValue={newie ? '' : subject}
 			      />
 			    </div>	
 
@@ -79,11 +90,10 @@ const Detail = (props) => {
 	          	label="Mensaje"
 	          	multiline={true}
 	          	rows="10"
-	          	defaultValue={isNew ? '' : text}
-	          	className={classes.textField}
+	          	defaultValue={newie ? '' : text}
 	          	margin="normal"
 	          	variant="outlined"
-	          	className={classes.margin}
+	          	className={`${classes.margin} ${classes.textField}`}
 			        InputLabelProps={{
 			          classes: {
 			            root: classes.cssLabel,
@@ -123,13 +133,15 @@ const mapStateToProps = (state) => {
     text: state.message.mText,
     id: state.message.image,
     sentList: state.sentList,
-    isNew: state.isNew
+    newie: state.isNew,
+    redirect: state.isSent
   };
 }
 
 const mapDispatchToProps = {
   updateInputMessage,
-  addSentList
+  addSentList,
+  isSent 
 }
 
 const DetailWithStyles = withStyles(styles)(Detail);

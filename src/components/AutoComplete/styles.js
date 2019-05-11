@@ -6,6 +6,7 @@ const styles = theme => ({
   container: {
     position: 'relative',
     width: '100%',
+    margin: theme.spacing.unit,
   },
   suggestionsContainerOpen: {
     position: 'absolute',
@@ -26,8 +27,7 @@ const styles = theme => ({
     height: theme.spacing.unit * 2,
   },
 margin: {
-    margin: theme.spacing.unit,
-    width: '98%'
+    width: '100%'
   },
   cssLabel: {
     '&$cssFocused': {

@@ -5,3 +5,4 @@ export const PAGINATOR = 'PAGINATOR';
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const UPDATE_SENT_LIST = 'UPDATE_SENT_LIST';
 export const IS_NEW = 'IS_NEW';
+export const IS_SENT = 'IS_SENT';

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ListMaterial from '@material-ui/core/List';
@@ -91,7 +91,7 @@ const FolderList = (props) => {
                 >
                   <ListItem key={index}>
                     <Avatar>
-                      <img src={image} />
+                      <img src={image} alt={'Tiburoncin uh ah ah'} />
                     </Avatar>
                     <ListItemText primary={`${item.firstName} ${item.lastName || ''}`} secondary={text}/>                  
                   </ListItem>

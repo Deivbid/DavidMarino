@@ -7,13 +7,13 @@ import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
-import Popper from '@material-ui/core/Popper';
 import { withStyles } from '@material-ui/core/styles';
 //Redux
-import { updateInputMessage } from '../../actions/';
+import { updateInputMessage, isNew } from '../../actions/';
 import { connect } from 'react-redux';
-
+//Styles
 import { styles } from './styles';
+//Data
 import Data from '../../mock_data/MOCK_DATA.json';
 
 
@@ -45,7 +45,6 @@ const renderInputComponent = (inputProps) => {
       label="Nombre"
       variant="outlined"
       id="custom-css-outlined-input"
-      //defaultValue={ isNew ? '' : name}
       {...other}
     />      
   );
@@ -104,6 +103,7 @@ class IntegrationAutosuggest extends React.Component {
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
+    this.props.isNew(false)
     this.setState({
       suggestions: getSuggestions(value),
     });
@@ -121,8 +121,8 @@ class IntegrationAutosuggest extends React.Component {
 
 
   render() {
-    const { classes, isNew, name } = this.props;
-
+    const { classes, newie, name } = this.props;
+    let text = name;
     const autosuggestProps = {
       renderInputComponent,
       suggestions: this.state.suggestions,
@@ -132,6 +132,10 @@ class IntegrationAutosuggest extends React.Component {
       renderSuggestion,
     };
 
+    if(newie){
+      text = ''
+    }
+    console.log(text, isNew)
     return (
         <Autosuggest
           {...autosuggestProps}
@@ -140,7 +144,7 @@ class IntegrationAutosuggest extends React.Component {
             isNew,
             name,
             placeholder: 'Nombre',
-            value:isNew ? '' : name,
+            value: text,
             onChange: this.handleChange('name'),
           }}
           theme={{
@@ -166,12 +170,13 @@ IntegrationAutosuggest.propTypes = {
 const mapStateToProps = (state) => {
   return {
     name: state.message.mName,
-    isNew: state.isNew
+    newie: state.isNew
   };
 }
 
 const mapDispatchToProps = {
-  updateInputMessage
+  updateInputMessage,
+  isNew
 }
 
 const AutoComplete = withStyles(styles)(IntegrationAutosuggest);

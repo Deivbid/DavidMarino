@@ -1,11 +1,32 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Data from '../../mock_data/MOCK_DATA.json';
 import { List } from '../../components/List';
+import { isSent} from '../../actions/';
+import { connect } from 'react-redux';
 
-const Main = (props) => {
-  return (
-  	<List data={Data} title={'Inbox'}/>
-  )
+class Main extends Component {
+
+	constructor(props) {
+	  super(props);
+	
+	  this.state = {};
+	}
+
+	componentWillMount(){
+		this.props.isSent(false);
+	}
+
+	render(){
+  	return (
+  		<List data={Data} title={'Inbox'}/>
+  	);
+	};
+};
+
+const mapStateToProps = (state) => {}
+
+const mapDispatchToProps = {
+  isSent
 }
 
-export default Main;
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

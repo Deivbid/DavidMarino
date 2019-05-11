@@ -12,7 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
@@ -27,8 +27,6 @@ import Write from '@material-ui/icons/Create';
 import { Link } from 'react-router-dom';
 //Styles
 import { styles } from './styles'
-//Images
-import Logo from '../../assets/images/LogoLanding.svg'
 //Redux
 import { searchFilter, isNew } from '../../actions/';
 import { connect } from 'react-redux';
@@ -72,7 +70,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     const drawer = (
       <div>
@@ -81,6 +79,7 @@ class ResponsiveDrawer extends React.Component {
             <img 
               src={'https://juanjosesaez.com/wp-content/uploads/Gran-Tiburon-blanco.jpg'} 
               className={classes.profilePicture} 
+              alt={'Tiburoncin uh ha ha'}
             />
           </div>
           <div className={classes.textContainer}>

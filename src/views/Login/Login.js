@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 //Material
-import Grid from '@material-ui/core/Grid';
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Card } from '../../components/Card';
+
 import { withStyles } from '@material-ui/core/styles';
 import { styles } from './styles';
 //Images
@@ -80,13 +80,13 @@ class LoginComponent extends Component {
   			<div className={classes.container}>
   				<div className={classes.card}>
   					<div className={classes.leftSide}>
-  						<img src={Dolphin} className={classes.dolphin} />
+  						<img src={Dolphin} alt='Dolphin' className={classes.dolphin} />
   					</div>
   					<hr className={classes.separator} />
 
   					<div className={classes.rightSide}>
   						<div className={classes.logoContainer}>
-  							<img src={Logo} className={classes.logo} />
+  							<img src={Logo} alt='Logo' className={classes.logo} />
   						</div>
 
   						<div className={classes.inputsContainer}>
@@ -156,7 +156,7 @@ class LoginComponent extends Component {
 
         				<div className={classes.buttonContainerGoogle}>
                 	<Button className={classes.google} onClick={this.handleMissingFunctions}>
-                		<img src={GoogleLogo} className={classes.googleImg} />
+                		<img src={GoogleLogo} alt={'Logo'} className={classes.googleImg} />
           					Entrar con Google
         					</Button>
         				</div>

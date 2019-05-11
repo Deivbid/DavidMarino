@@ -5,7 +5,7 @@ import { setErrorMsgReducer } from './setErrorMsgReducer';
 import { paginatorReducer } from './paginatorReducer';
 import { searchFilterReducer } from './searchFilterReducer';
 import { addSentListReducer } from './addSentListReducer';
-import { isNewReducer } from './isNewReducer';
+import { isNewReducer, isSentReducer } from './isNewReducer';
 
 export default combineReducers({
  login: loginReducer,
@@ -15,5 +15,6 @@ export default combineReducers({
  searchFilter: searchFilterReducer,
  message: messageReducer,
  sentList: addSentListReducer,
- isNew: isNewReducer
+ isNew: isNewReducer,
+ isSent: isSentReducer
 });

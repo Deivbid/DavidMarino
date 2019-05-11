@@ -16,7 +16,7 @@ const styles = createStyles({
     display: 'flex',
     justifyContent: 'space-between', //De momento
     boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-    ['@media (max-width:480px)']: {
+    '@media (max-width:480px)': {
       minWidth: 300,
       maxWidth: 340,
       minHeight: '90vh',
@@ -27,7 +27,7 @@ const styles = createStyles({
     display: 'flex',
     justifyContent: 'center',
     margin: '0 15px',
-    ['@media (max-width:480px)']: {
+    '@media (max-width:480px)': {
       display: 'none'
     },
   },
@@ -36,7 +36,7 @@ const styles = createStyles({
     flexDirection: 'column',
     margin: '0 15px',
     width: 300, //POR AHORA
-    ['@media (max-width:480px)']: {
+    '@media (max-width:480px)': {
       //height: '90vh',
       justifyContent: 'space-evenly',
       width: 310
@@ -48,7 +48,7 @@ const styles = createStyles({
   },
   separator: {
     margin: 0,
-    ['@media (max-width:480px)']: {
+    '@media (max-width:480px)': {
       display: 'none'
     },    
   },

@@ -6,7 +6,7 @@ const styles = theme => ({
   },
   margin: {
     margin: theme.spacing.unit,
-    width: '98%'
+    width: '100%'
   },
   cssLabel: {
     '&$cssFocused': {
@@ -40,7 +40,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'flex-end',
     margin: '15px 10px',
-    ['@media (max-width:480px)']: {
+    '@media (max-width:480px)': {
       justifyContent: 'center',
     },    
   },
@@ -53,8 +53,8 @@ const styles = theme => ({
       color: 'white',
       outlineColor: 'transparent'
     },
-    ['@media (max-width:480px)']: {
-      width: '98%',
+    '@media (max-width:480px)': {
+      width: '100%',
     },     
   },
   sendIcon: {
