@@ -14,7 +14,7 @@ const styles = createStyles({
     borderRadius: 5,
     backgroundColor: '#FCFDFE',
     display: 'flex',
-    justifyContent: 'space-between', //De momento
+    justifyContent: 'space-between', // De momento
     boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     '@media (max-width:480px)': {
       minWidth: 300,
@@ -35,9 +35,9 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     margin: '0 15px',
-    width: 300, //POR AHORA
+    width: 300, // POR AHORA
     '@media (max-width:480px)': {
-      //height: '90vh',
+      // height: '90vh',
       justifyContent: 'space-evenly',
       width: 310
     },  
@@ -125,7 +125,7 @@ const styles = createStyles({
   text: {
     fontSize: 12
   },
-  //Inputs
+  // Inputs
   underline: {
     borderBottom: '0.5px solid #090012',
   },

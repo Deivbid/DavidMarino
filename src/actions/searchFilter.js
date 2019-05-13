@@ -6,3 +6,4 @@ export const searchFilter = (text) => {
   	payload: text
   }
 }
+

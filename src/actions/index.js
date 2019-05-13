@@ -1,9 +1,20 @@
-export { updateInputLogin, updateInputMessage }  from './updateInput';
-export { openSnackbar } from './openSnackbar';
-export { setErrorMsg } from './setErrorMsg';
-export { PaginatorRedux } from './paginator';
-export { searchFilter } from './searchFilter';
-export { addSentList } from './addSentList';
-export { isNew, isSent } from './isNew';
+import { updateInputLogin, updateInputMessage }  from './updateInput';
+import { openSnackbar } from './openSnackbar';
+import { setErrorMsg } from './setErrorMsg';
+import { PaginatorRedux } from './paginator';
+import { searchFilter } from './searchFilter';
+import { addSentList } from './addSentList';
+import { isNew, isSent } from './isNew';
 
 
+export {
+	updateInputLogin,
+	updateInputMessage,
+	openSnackbar,
+	setErrorMsg,
+	PaginatorRedux,
+	searchFilter,
+	addSentList,
+	isNew,
+	isSent
+}

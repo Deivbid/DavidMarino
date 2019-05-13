@@ -1,4 +1,5 @@
 import { fade } from '@material-ui/core/styles/colorManipulator';
+
 const drawerWidth = 240;
 const styles = theme => ({
   root: {
@@ -32,7 +33,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
 
-  //SearchBar
+  // SearchBar
 	search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -73,7 +74,7 @@ const styles = theme => ({
     },
   },
 
-  //Profile
+  // Profile
   profilePicture: {
     width: 100,
     height: 100,
@@ -93,13 +94,13 @@ const styles = theme => ({
     fontFamily: 'Ubuntu'	
   },
 
-  //Options
+  // Options
   optionText:{
     fontFamily: 'Ubuntu',
     fontWeight: 700,
   },
 
-  //Add Button: 
+  // Add Button: 
   addButton: {
     display: 'flex',
     margin: '15px 0',

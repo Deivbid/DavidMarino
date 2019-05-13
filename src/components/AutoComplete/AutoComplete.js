@@ -8,19 +8,19 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-//Redux
-import { updateInputMessage, isNew } from '../../actions/';
+// Redux
 import { connect } from 'react-redux';
-//Styles
+import { updateInputMessage, isNew } from "../../actions";
+// Styles
 import { styles } from './styles';
-//Data
+// Data
 import Data from '../../mock_data/MOCK_DATA.json';
 
 
-const suggestions =  Data.map(item => { return {label: `${item.firstName} ${item.lastName}`} })
+const suggestionss =  Data.map(item => { return {label: `${item.firstName} ${item.lastName}`} })
 
 const renderInputComponent = (inputProps) => {
-  const { classes, isNew, name, inputRef = () => {}, ref, ...other } = inputProps;
+  const { classes, name, inputRef = () => {}, ref, ...other } = inputProps;
 
   return (
     <TextField
@@ -80,7 +80,7 @@ const getSuggestions = (value) => {
 
   return inputLength === 0
     ? []
-    : suggestions.filter(suggestion => {
+    : suggestionss.filter(suggestion => {
         const keep =
           count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
 
@@ -98,12 +98,12 @@ const getSuggestionValue = (suggestion) => {
 
 class IntegrationAutosuggest extends React.Component {
   state = {
-    single: '',
     suggestions: [],
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    this.props.isNew(false)
+    const { setNew } = this.props;
+    setNew(false)
     this.setState({
       suggestions: getSuggestions(value),
     });
@@ -116,16 +116,19 @@ class IntegrationAutosuggest extends React.Component {
   };
 
    handleChange = name => (event, { newValue }) => {
-    this.props.updateInputMessage(name, newValue)
+    const { updateMesssage } = this.props;
+    updateMesssage(name, newValue);
   };
 
 
   render() {
     const { classes, newie, name } = this.props;
+    const { suggestions } = this.state;
+
     let text = name;
     const autosuggestProps = {
       renderInputComponent,
-      suggestions: this.state.suggestions,
+      suggestions,
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue,
@@ -133,9 +136,9 @@ class IntegrationAutosuggest extends React.Component {
     };
 
     if(newie){
-      text = ''
+      text = '';
     }
-    console.log(text, isNew)
+
     return (
         <Autosuggest
           {...autosuggestProps}
@@ -164,7 +167,7 @@ class IntegrationAutosuggest extends React.Component {
 }
 
 IntegrationAutosuggest.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 const mapStateToProps = (state) => {
@@ -175,8 +178,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  updateInputMessage,
-  isNew
+  updateMesssage:updateInputMessage,
+  setNew: isNew
 }
 
 const AutoComplete = withStyles(styles)(IntegrationAutosuggest);

@@ -5,23 +5,23 @@ import ListMaterial from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-//Redux
-import { PaginatorRedux } from '../../actions/';
+// Redux
 import { connect } from 'react-redux';
-//Text Handling
+// Text Handling
 import LinesEllipsis from 'react-lines-ellipsis';
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC';
-import { images } from './items';
-//Pagination Buttons
+// Pagination Buttons
 import Fab from '@material-ui/core/Fab';
 import Left from '@material-ui/icons/ChevronLeft';
 import Right from '@material-ui/icons/ChevronRight';
-//Paginator
-import { Paginator } from './Paginator';
-//Styles
-import { styles } from './styles';
-//Router
+// Paginator
 import { Link } from 'react-router-dom';
+import { Paginator } from './Paginator';
+// Styles
+import { styles } from './styles';
+// Router
+import { images } from './items';
+import { PaginatorRedux } from "../../actions";
  
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis)
 
@@ -31,21 +31,22 @@ const FolderList = (props) => {
     data, 
     title, 
     currentPage,
-    searchFilter } = props;
+    searchFilter,
+  } = props;
 
-  const currentList = Paginator(data, currentPage)
+  const currentList = Paginator(data, currentPage);
 
   if(searchFilter){
-    let newData = data.filter((item) => item.firstName.includes(searchFilter) || item.email.includes(searchFilter))
-    currentList.data = newData
+    const newData = data.filter((item) => item.firstName.includes(searchFilter) || item.email.includes(searchFilter));
+    currentList.data = newData;
   }
 
-  const nextPage = event => {
-    if(props.currentPage <= currentList.total_pages)
+  const nextPage = () => {
+    if(props.currentPage <= currentList.total_pages);
       props.PaginatorRedux(props.currentPage + 1);
   }
 
-  const prevPage = event => {
+  const prevPage = () => {
     if(props.currentPage >= 1)
       props.PaginatorRedux(props.currentPage - 1);
   }
@@ -79,7 +80,7 @@ const FolderList = (props) => {
                   ellipsis='...'
                   trimRight
                   basedOn='letters'
-                  key={index}
+                  key={item}
                 />
               )
 
@@ -88,10 +89,11 @@ const FolderList = (props) => {
                 <Link 
                   to={{ pathname: `/main/email/${index+1}`, state: {item, image}}} 
                   className={classes.link} 
+                  key={`${item.firstName} ${item.lastName || ''}`}
                 >
-                  <ListItem key={index}>
+                  <ListItem>
                     <Avatar>
-                      <img src={image} alt={'Tiburoncin uh ah ah'} />
+                      <img src={image} alt="Tiburoncin uh ah ah" />
                     </Avatar>
                     <ListItemText primary={`${item.firstName} ${item.lastName || ''}`} secondary={text}/>                  
                   </ListItem>
@@ -105,7 +107,7 @@ const FolderList = (props) => {
 }
 
 FolderList.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 const mapStateToProps = (state) => {

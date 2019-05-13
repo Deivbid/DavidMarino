@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classNames from 'classnames'; // eslint-disable-line import/no-extraneous-dependencies
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
@@ -12,7 +11,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
 
 const variantIcon = {
-  //success: CheckCircleIcon,
+  // success: CheckCircleIcon,
   warning: WarningIcon,
   error: ErrorIcon,
   info: InfoIcon,
@@ -73,14 +72,6 @@ const MySnackbarContent = (props) => {
     />
   );
 }
-
-MySnackbarContent.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  message: PropTypes.node,
-  onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
-};
 
 const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
 

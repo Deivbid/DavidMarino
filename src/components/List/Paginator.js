@@ -1,17 +1,17 @@
 const Paginator = (items, page) => {
-  page = page || 1
-  let per_page = 20,
-  offset = (page - 1) * per_page,
+  const cPage = page || 1
+  const perPage = 20;
+  const offset = (cPage - 1) * perPage;
  
-  paginatedItems = items.slice(offset).slice(0, per_page),
-  total_pages = Math.ceil(items.length / per_page);
+  const paginatedItems = items.slice(offset).slice(0, perPage);
+  const totalPages = Math.ceil(items.length / perPage);
   return {
-    page: page,
-    per_page: per_page,
-    pre_page: page - 1 ? page - 1 : null,
-    next_page: (total_pages > page) ? page + 1 : null,
+    page: cPage,
+    per_page: perPage,
+    pre_page: cPage - 1 ? cPage - 1 : null,
+    next_page: (totalPages > cPage) ? cPage + 1 : null,
     total: items.length,
-    total_pages: total_pages,
+    total_pages: totalPages,
     data: paginatedItems
   };
 }

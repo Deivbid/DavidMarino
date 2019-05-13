@@ -1,32 +1,29 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import Data from '../../mock_data/MOCK_DATA.json';
 import { List } from '../../components/List';
-import { isSent} from '../../actions/';
-import { connect } from 'react-redux';
+import { isSent} from "../../actions";
 
 class Main extends Component {
 
-	constructor(props) {
-	  super(props);
-	
-	  this.state = {};
-	}
-
 	componentWillMount(){
-		this.props.isSent(false);
+		const { sent } = this.props;
+		sent(false);
 	}
 
 	render(){
   	return (
-  		<List data={Data} title={'Inbox'}/>
+  		<List data={Data} title="Inbox"/>
   	);
 	};
 };
 
-const mapStateToProps = (state) => {}
+const mapStateToProps = () => {
+	return {}
+}
 
 const mapDispatchToProps = {
-  isSent
+  sent: isSent
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

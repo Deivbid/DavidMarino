@@ -36,7 +36,7 @@ const styles = {
 
 const Sent = (props) => {
 	const { classes } = props;
-	const { item, image } = props.location.state;
+	const { item, image } = props.location.state; // eslint-disable-line react/destructuring-assignment
 
   return (
   	<div>
@@ -44,7 +44,7 @@ const Sent = (props) => {
   			<h1>{item.subject}</h1>
   			<div className={classes.nameContainer}>
   				<Avatar>  				
-  					<img src={image} alt={'profile'} className={classes.image}/>
+  					<img src={image} alt="profile" className={classes.image}/>
   				</Avatar>
   				<h4 style={{opacity: 0.6, margin: 'auto 5px'}}>{`${item.firstName} ${item.lastName}`}</h4>
   				<span className={classes.email}>{` - ${item.email}`}</span>

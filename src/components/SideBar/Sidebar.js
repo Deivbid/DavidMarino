@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//Material
+// Material
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -12,24 +12,23 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
-
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-//Icons
+// Icons
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu';
 import SentIcon from '@material-ui/icons/Send';
 import DraftIcon from '@material-ui/icons/Drafts';
 import Write from '@material-ui/icons/Create';
-//Routes
+// Routes
 import { Link } from 'react-router-dom';
-//Styles
-import { styles } from './styles'
-//Redux
-import { searchFilter, isNew } from '../../actions/';
+// Styles
 import { connect } from 'react-redux';
+import { styles } from './styles'
+// Redux
+import { searchFilter, isNew, PaginatorRedux } from "../../actions";
 
 const options = [
   {
@@ -62,24 +61,28 @@ class ResponsiveDrawer extends React.Component {
   };
 
   handleChange = (event)  => {
-    this.props.searchFilter(event.target.value)
+    const { search } = this.props;
+    search(event.target.value);
   };
 
-  handleNew = (flag) => (event) =>{
-    this.props.isNew(flag)
+  handleNew = (flag) => () =>{
+    const { setNew, paginator } = this.props;
+    paginator(1);
+    setNew(flag);
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, container, children } = this.props;
+    const { mobileOpen } = this.state;
 
     const drawer = (
       <div>
         <div className={classes.toolbar}>
           <div className={classes.profilePicContainer}>
             <img 
-              src={'https://juanjosesaez.com/wp-content/uploads/Gran-Tiburon-blanco.jpg'} 
+              src="https://juanjosesaez.com/wp-content/uploads/Gran-Tiburon-blanco.jpg" 
               className={classes.profilePicture} 
-              alt={'Tiburoncin uh ha ha'}
+              alt="Tiburoncin uh ha ha"
             />
           </div>
           <div className={classes.textContainer}>
@@ -88,8 +91,8 @@ class ResponsiveDrawer extends React.Component {
         </div>
         <Divider />
         <List>
-          {options.map((item, index) => (
-            <Link to={item.path} style={{textDecoration: 'none'}} key={index}>
+          {options.map((item) => (
+            <Link to={item.path} style={{textDecoration: 'none'}} key={item.id}>
               <ListItem button key={item.id} onClick={this.handleNew(false)}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText 
@@ -144,12 +147,11 @@ class ResponsiveDrawer extends React.Component {
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
             <Drawer
-              container={this.props.container}
+              container={container}
               variant="temporary"
-              open={this.state.mobileOpen}
+              open={mobileOpen}
               onClose={this.handleDrawerToggle}
               classes={{
                 paper: classes.drawerPaper,
@@ -172,7 +174,7 @@ class ResponsiveDrawer extends React.Component {
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {this.props.children}
+          {children}
         </main>
       </div>
     );
@@ -180,8 +182,7 @@ class ResponsiveDrawer extends React.Component {
 }
 
 ResponsiveDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 const mapStateToProps = (state) => {
@@ -191,8 +192,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  searchFilter,
-  isNew
+  search: searchFilter,
+  setNew: isNew,
+  paginator: PaginatorRedux
 }
 
 const SidebarComponent = withStyles(styles, { withTheme: true })(ResponsiveDrawer);

@@ -1,18 +1,19 @@
 import React from 'react';
-//Material
+// Redux
+import { connect } from 'react-redux';
+// Material
 import Button from '@material-ui/core/Button';
 import Send from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import { styles } from './styles';
-//Redux
-import { updateInputMessage, addSentList, isSent} from '../../actions/';
-import { connect } from 'react-redux';
-
-import { AutoComplete } from '../../components/AutoComplete';
+import { Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
-//Router
-import { Redirect } from 'react-router';
+import { styles } from './styles';
+// AutoComplete Component
+import { AutoComplete } from '../../components/AutoComplete';
+// Router
+// SeetAlert
+import { updateInputMessage, addSentList, isSent} from "../../actions";
 
 const Detail = (props) => {
 	const { 
@@ -26,11 +27,11 @@ const Detail = (props) => {
     props.updateInputMessage(name, event.target.value)
   }
 
-  const handleClick = (event) => {
-  	const { name, subject, text, sentList } = props;
+  const handleClick = () => {
+  	const { name, /* subject, text, */ sentList } = props;
   	const obj = { 
   		firstName: name, 
-  		subject: subject, 
+  		subject, 
   		message: text,
   		email: 'test@prueba.com'
   	}
@@ -51,7 +52,7 @@ const Detail = (props) => {
   return (
   	<div className={classes.container}>
   		<div className={classes.titleContainer}>
-  			<h1>{'Mensaje'}</h1>
+  			<h1>Mensaje</h1>
   		</div>
 	  	<div className={classes.root}>
 	  		<div className={classes.inputsContainer}>
@@ -88,7 +89,7 @@ const Detail = (props) => {
 			  			onChange={handleChange('text')}
 	          	id="outlined-multiline-static"
 	          	label="Mensaje"
-	          	multiline={true}
+	          	multiline
 	          	rows="10"
 	          	defaultValue={newie ? '' : text}
 	          	margin="normal"

@@ -15,20 +15,20 @@ const styles = createStyles({
 })
 
 
-const CardComponent = (props) => {
+const CardComponent = ({classes, children}) => {
 	return (
-		<Grid container={true} className={props.classes.root} justify='center'>
-      <Grid item={true} xs={12}>
+		<Grid container className={classes.root} justify='center'>
+      <Grid item xs={12}>
         <Card>
           <Grid
-            container={true}
+            container
             align='center'
             alignItems='center'
             justify='center'
             direction='column'
-            className={props.classes.styles}
+            className={classes.styles}
           >
-            {props.children}
+            {children}
           </Grid>
         </Card>
       </Grid>

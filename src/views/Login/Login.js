@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-//Material
-
+// Material
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import { Redirect } from 'react-router-dom';
 import { styles } from './styles';
-//Images
+// Images
 import Dolphin from  '../../assets/images/dolphin.svg';
 import Logo from  '../../assets/images/LogoLanding.svg';
 import GoogleLogo from '../../assets/images/google.png';
-//Redux
-import { updateInputLogin, openSnackbar, setErrorMsg } from '../../actions/';
-import { connect } from 'react-redux';
-//Error Handling
+// Redux
+import { updateInputLogin, openSnackbar, setErrorMsg } from "../../actions";
+// Error Handling
 import { SnackbarContent } from '../../components/Snackbar';
-import Snackbar from '@material-ui/core/Snackbar';
-//Router
-import { Redirect } from 'react-router';
+// Router
 
 class LoginComponent extends Component {
 
@@ -31,29 +30,31 @@ class LoginComponent extends Component {
 
 
   	handleChange = (name) => (event) => {
-    	this.props.updateInputLogin(name, event.target.value)
+      const { updateInput } = this.props;
+    	updateInput(name, event.target.value)
   	}
 
   	handleClose = (event, reason) => {
+      const { openSnack } = this.props;
     	if (reason === 'clickaway') {
       	return;
     	}
 
-    	this.props.openSnackbar(false)
+    	openSnack(false)
   	};
   	
   	handleClick = () => {
-  		const { email, password } = this.props
+  		const { email, password, setError, openSnack } = this.props;
 
   		if(!email || !password){
-  			this.props.setErrorMsg('Debes rellenar ambos campos c:')
-   			this.props.openSnackbar(true)
+  			setError('Debes rellenar ambos campos c:');
+   			openSnack(true);
    			return;
   		}
 
   		if(email !== 'test@getsirena.com' || password !== 'test'){
-  			this.props.setErrorMsg('Nop, esta cuenta nop D:')
-   			this.props.openSnackbar(true)
+  			setError('Nop, esta cuenta nop D:');
+   			openSnack(true);
    			return;  			
   		}
 
@@ -61,16 +62,25 @@ class LoginComponent extends Component {
   	};
 
   	handleMissingFunctions = () => {
-  		this.props.setErrorMsg('Esta función no se implementó T_T')
-   		this.props.openSnackbar(true)
+      const { setError, openSnack } = this.props;
+  		setError('Esta función no se implementó T_T');
+   		openSnack(true);
   	}
 
 		
 
     render(){
-      const { classes, email, password } = this.props;
+      const { 
+        classes, 
+        email, 
+        password, 
+        isSnackbarOpen,
+        errorMsg 
+      } = this.props;
 
-      if(this.state.redirect){
+      const { redirect } = this.state;
+
+      if(redirect){
         return(
          <Redirect to="/main/inbox"/>
         )
@@ -156,7 +166,7 @@ class LoginComponent extends Component {
 
         				<div className={classes.buttonContainerGoogle}>
                 	<Button className={classes.google} onClick={this.handleMissingFunctions}>
-                		<img src={GoogleLogo} alt={'Logo'} className={classes.googleImg} />
+                		<img src={GoogleLogo} alt="Logo" className={classes.googleImg} />
           					Entrar con Google
         					</Button>
         				</div>
@@ -175,14 +185,14 @@ class LoginComponent extends Component {
   			            vertical: 'top',
   			            horizontal: 'right',
   			          }}
-  			          open={this.props.isSnackbarOpen}
+  			          open={isSnackbarOpen}
   			          autoHideDuration={6000}
   			          onClose={this.handleClose}
   			        >
   			          <SnackbarContent
   			            onClose={this.handleClose}
   			            variant="error"
-  			            message={this.props.errorMsg}
+  			            message={errorMsg}
   			          />
   			        </Snackbar>      				
   						</div>
@@ -203,9 +213,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  updateInputLogin,
-  openSnackbar,
-  setErrorMsg
+  updateInput: updateInputLogin,
+  openSnack: openSnackbar,
+  setError: setErrorMsg
 }
 
 

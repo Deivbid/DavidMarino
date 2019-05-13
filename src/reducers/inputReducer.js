@@ -1,5 +1,5 @@
-import { INPUT_UPDATE } from '../actions/types';
 import { combineReducers } from 'redux';
+import { INPUT_UPDATE } from '../actions/types';
 
 export const loginInitialState = {
   email: '',
