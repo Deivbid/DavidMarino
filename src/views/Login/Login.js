@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // Material
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -16,7 +15,8 @@ import GoogleLogo from '../../assets/images/google.png';
 import { updateInputLogin, openSnackbar, setErrorMsg } from "../../actions";
 // Error Handling
 import { SnackbarContent } from '../../components/Snackbar';
-// Router
+// Document Title
+import { DocumentTitle } from '../../components/DocumentTitle';
 
 class LoginComponent extends Component {
 
@@ -87,118 +87,120 @@ class LoginComponent extends Component {
       }
 
   		return (
-  			<div className={classes.container}>
-  				<div className={classes.card}>
-  					<div className={classes.leftSide}>
-  						<img src={Dolphin} alt='Dolphin' className={classes.dolphin} />
-  					</div>
-  					<hr className={classes.separator} />
+        <DocumentTitle title="Login">
+    			<div className={classes.container}>
+    				<div className={classes.card}>
+    					<div className={classes.leftSide}>
+    						<img src={Dolphin} alt='Dolphin' className={classes.dolphin} />
+    					</div>
+    					<hr className={classes.separator} />
 
-  					<div className={classes.rightSide}>
-  						<div className={classes.logoContainer}>
-  							<img src={Logo} alt='Logo' className={classes.logo} />
-  						</div>
+    					<div className={classes.rightSide}>
+    						<div className={classes.logoContainer}>
+    							<img src={Logo} alt='Logo' className={classes.logo} />
+    						</div>
 
-  						<div className={classes.inputsContainer}>
-  							<div className={classes.title}>
-  								<h2 className={classes.h2}>Bienvenido a Sirena</h2>
-  							</div>
+    						<div className={classes.inputsContainer}>
+    							<div className={classes.title}>
+    								<h2 className={classes.h2}>Bienvenido a Sirena</h2>
+    							</div>
 
-  							<div className={classes.input}>
-  								<TextField
-                		id='email'
-                		label='Email'
-                		value={email}
-                		onChange={this.handleChange('email')}
-                		InputLabelProps={{
-                			classes: {
-       									root: classes.cssLabel,
-       									focused: classes.cssFocused,
-       								},
-        						}}
-      							InputProps={{
-        							classes: {
-          							underline: classes.underline,
-          							focused: classes.purple,
-        							},
-      							}}
-              		/>
-  							</div>
+    							<div className={classes.input}>
+    								<TextField
+                  		id='email'
+                  		label='Email'
+                  		value={email}
+                  		onChange={this.handleChange('email')}
+                  		InputLabelProps={{
+                  			classes: {
+         									root: classes.cssLabel,
+         									focused: classes.cssFocused,
+         								},
+          						}}
+        							InputProps={{
+          							classes: {
+            							underline: classes.underline,
+            							focused: classes.purple,
+          							},
+        							}}
+                		/>
+    							</div>
 
-  							<div className={classes.input}>
-  								<TextField
-                		id='password'
-                		label='Password'
-                		type='password'
-                		value={password}
-                		onChange={this.handleChange('password')}
-                		InputLabelProps={{
-                			classes: {
-       									root: classes.cssLabel,
-       									focused: classes.cssFocused,
-       								},
-        						}}
-      							InputProps={{
-        							classes: {
-          							underline: classes.underline,
-          							focused: classes.purple,
-        							},
-      							}}
-              		/>
-  							</div>
+    							<div className={classes.input}>
+    								<TextField
+                  		id='password'
+                  		label='Password'
+                  		type='password'
+                  		value={password}
+                  		onChange={this.handleChange('password')}
+                  		InputLabelProps={{
+                  			classes: {
+         									root: classes.cssLabel,
+         									focused: classes.cssFocused,
+         								},
+          						}}
+        							InputProps={{
+          							classes: {
+            							underline: classes.underline,
+            							focused: classes.purple,
+          							},
+        							}}
+                		/>
+    							</div>
 
-  							<div className={classes.buttonContainer}>
-  								<Button 
-  									variant="contained" 
-  									color="primary" 
-  									className={classes.button}
-  									onClick={this.handleClick}
-  								>
-          					Entrar
-        					</Button>
-        				</div>
+    							<div className={classes.buttonContainer}>
+    								<Button 
+    									variant="contained" 
+    									color="primary" 
+    									className={classes.button}
+    									onClick={this.handleClick}
+    								>
+            					Entrar
+          					</Button>
+          				</div>
 
-        				<div className={classes.horizontalSepContainer}>
-        					<hr className={classes.line}/>
-        					<h5> OR </h5>
-        					<hr className={classes.line}/>
-        				</div>
+          				<div className={classes.horizontalSepContainer}>
+          					<hr className={classes.line}/>
+          					<h5> OR </h5>
+          					<hr className={classes.line}/>
+          				</div>
 
-        				<div className={classes.buttonContainerGoogle}>
-                	<Button className={classes.google} onClick={this.handleMissingFunctions}>
-                		<img src={GoogleLogo} alt="Logo" className={classes.googleImg} />
-          					Entrar con Google
-        					</Button>
-        				</div>
+          				<div className={classes.buttonContainerGoogle}>
+                  	<Button className={classes.google} onClick={this.handleMissingFunctions}>
+                  		<img src={GoogleLogo} alt="Logo" className={classes.googleImg} />
+            					Entrar con Google
+          					</Button>
+          				</div>
 
-        				<div className={classes.newAccount}>
-        					<p className={classes.text}>
-        							<b>Nuevo Usuario?</b> 
-        							<a href="#!" onClick={this.handleMissingFunctions} style={{textDecoration: 'none'}}> 
-        								{" Crear Cuenta"}
-        							</a>
-        						</p>
-        				</div>
+          				<div className={classes.newAccount}>
+          					<p className={classes.text}>
+          							<b>Nuevo Usuario?</b> 
+          							<a href="#!" onClick={this.handleMissingFunctions} style={{textDecoration: 'none'}}> 
+          								{" Crear Cuenta"}
+          							</a>
+          						</p>
+          				</div>
 
-  			        <Snackbar
-  			          anchorOrigin={{
-  			            vertical: 'top',
-  			            horizontal: 'right',
-  			          }}
-  			          open={isSnackbarOpen}
-  			          autoHideDuration={6000}
-  			          onClose={this.handleClose}
-  			        >
-  			          <SnackbarContent
-  			            onClose={this.handleClose}
-  			            variant="error"
-  			            message={errorMsg}
-  			          />
-  			        </Snackbar>      				
-  						</div>
-  					</div>					
-  				</div>		
-  			</div>
+    			        <Snackbar
+    			          anchorOrigin={{
+    			            vertical: 'top',
+    			            horizontal: 'right',
+    			          }}
+    			          open={isSnackbarOpen}
+    			          autoHideDuration={6000}
+    			          onClose={this.handleClose}
+    			        >
+    			          <SnackbarContent
+    			            onClose={this.handleClose}
+    			            variant="error"
+    			            message={errorMsg}
+    			          />
+    			        </Snackbar>      				
+    						</div>
+    					</div>					
+    				</div>		
+    			</div>
+        </DocumentTitle>
   	);
   }
 }

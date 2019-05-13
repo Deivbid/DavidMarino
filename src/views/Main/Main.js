@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Data from '../../mock_data/MOCK_DATA.json';
+// Components
 import { List } from '../../components/List';
-import { isSent} from "../../actions";
+// Redux
+import { isSent} from '../../actions';
+// Document Title
+import { DocumentTitle } from '../../components/DocumentTitle';
 
 class Main extends Component {
 
@@ -13,7 +17,9 @@ class Main extends Component {
 
 	render(){
   	return (
-  		<List data={Data} title="Inbox"/>
+  		<DocumentTitle title="Main">
+  			<List data={Data} title="Inbox"/>
+  		</DocumentTitle>
   	);
 	};
 };

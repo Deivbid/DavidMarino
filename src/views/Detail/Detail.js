@@ -14,6 +14,8 @@ import { AutoComplete } from '../../components/AutoComplete';
 // Router
 // SeetAlert
 import { updateInputMessage, addSentList, isSent} from "../../actions";
+// Document Title
+import { DocumentTitle } from '../../components/DocumentTitle';
 
 const Detail = (props) => {
 	const { 
@@ -50,80 +52,82 @@ const Detail = (props) => {
   }
 
   return (
-  	<div className={classes.container}>
-  		<div className={classes.titleContainer}>
-  			<h1>Mensaje</h1>
-  		</div>
-	  	<div className={classes.root}>
-	  		<div className={classes.inputsContainer}>
-	  			<div className={classes.input}>
-          	<AutoComplete />            				           	      
-			    </div>
+  	<DocumentTitle title="Detail">
+	  	<div className={classes.container}>
+	  		<div className={classes.titleContainer}>
+	  			<h1>Mensaje</h1>
+	  		</div>
+		  	<div className={classes.root}>
+		  		<div className={classes.inputsContainer}>
+		  			<div className={classes.input}>
+	          	<AutoComplete />            				           	      
+				    </div>
 
-	  			<div className={classes.input}>
-			  		<TextField
-			  			onChange={handleChange('subject')}
-			        className={classes.margin}						        
-			        InputLabelProps={{
-			          classes: {
-			            root: classes.cssLabel,
-			            focused: classes.cssFocused,
-			          },
-			        }}
-			        InputProps={{
-			          classes: {
-			            root: classes.cssOutlinedInput,
-			            focused: classes.cssFocused,
-			            notchedOutline: classes.notchedOutline,
-			          },
-			        }}
-			        label="Asunto"
-			        variant="outlined"
-			        id="custom-css-outlined-input"
-			        defaultValue={newie ? '' : subject}
-			      />
-			    </div>	
+		  			<div className={classes.input}>
+				  		<TextField
+				  			onChange={handleChange('subject')}
+				        className={classes.margin}						        
+				        InputLabelProps={{
+				          classes: {
+				            root: classes.cssLabel,
+				            focused: classes.cssFocused,
+				          },
+				        }}
+				        InputProps={{
+				          classes: {
+				            root: classes.cssOutlinedInput,
+				            focused: classes.cssFocused,
+				            notchedOutline: classes.notchedOutline,
+				          },
+				        }}
+				        label="Asunto"
+				        variant="outlined"
+				        id="custom-css-outlined-input"
+				        defaultValue={newie ? '' : subject}
+				      />
+				    </div>	
 
-	  			<div className={classes.input}>
-			  		<TextField
-			  			onChange={handleChange('text')}
-	          	id="outlined-multiline-static"
-	          	label="Mensaje"
-	          	multiline
-	          	rows="10"
-	          	defaultValue={newie ? '' : text}
-	          	margin="normal"
-	          	variant="outlined"
-	          	className={`${classes.margin} ${classes.textField}`}
-			        InputLabelProps={{
-			          classes: {
-			            root: classes.cssLabel,
-			            focused: classes.cssFocused,
-			          },
-			        }}
-			        InputProps={{
-			          classes: {
-			            root: classes.cssOutlinedInput,
-			            focused: classes.cssFocused,
-			            notchedOutline: classes.notchedOutline,
-			          },
-			        }}
-	        	/>
-			    </div>	
-	      </div>
-	      <div className={classes.sendButton}>
-	      	<Button 
-	      		variant="contained" 
-	      		color="primary" 
-	      		className={classes.button}
-	      		onClick={handleClick}
-	      	>
-	        	Send
-	        	<Send  className={classes.sendIcon}/>
-	      	</Button>
-	      </div>
+		  			<div className={classes.input}>
+				  		<TextField
+				  			onChange={handleChange('text')}
+		          	id="outlined-multiline-static"
+		          	label="Mensaje"
+		          	multiline
+		          	rows="10"
+		          	defaultValue={newie ? '' : text}
+		          	margin="normal"
+		          	variant="outlined"
+		          	className={`${classes.margin} ${classes.textField}`}
+				        InputLabelProps={{
+				          classes: {
+				            root: classes.cssLabel,
+				            focused: classes.cssFocused,
+				          },
+				        }}
+				        InputProps={{
+				          classes: {
+				            root: classes.cssOutlinedInput,
+				            focused: classes.cssFocused,
+				            notchedOutline: classes.notchedOutline,
+				          },
+				        }}
+		        	/>
+				    </div>	
+		      </div>
+		      <div className={classes.sendButton}>
+		      	<Button 
+		      		variant="contained" 
+		      		color="primary" 
+		      		className={classes.button}
+		      		onClick={handleClick}
+		      	>
+		        	Send
+		        	<Send  className={classes.sendIcon}/>
+		      	</Button>
+		      </div>
+		    </div>
 	    </div>
-    </div>
+	  </DocumentTitle>
   )
 }
 

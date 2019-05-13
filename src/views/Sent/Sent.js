@@ -1,6 +1,9 @@
 import React from 'react';
+// MateriAL
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+// Document Title
+import { DocumentTitle } from '../../components/DocumentTitle';
 
 const styles = {
 	nameContainer: {
@@ -39,20 +42,22 @@ const Sent = (props) => {
 	const { item, image } = props.location.state; // eslint-disable-line react/destructuring-assignment
 
   return (
-  	<div>
-  		<div>
-  			<h1>{item.subject}</h1>
-  			<div className={classes.nameContainer}>
-  				<Avatar>  				
-  					<img src={image} alt="profile" className={classes.image}/>
-  				</Avatar>
-  				<h4 style={{opacity: 0.6, margin: 'auto 5px'}}>{`${item.firstName} ${item.lastName}`}</h4>
-  				<span className={classes.email}>{` - ${item.email}`}</span>
-  			</div>
-  			<div className={classes.mobileEmail}>{item.email}</div>
-  			<p className={classes.message}>{item.message}</p>
-  		</div>
-    </div>
+    <DocumentTitle title="Sent">
+    	<div>
+    		<div>
+    			<h1>{item.subject}</h1>
+    			<div className={classes.nameContainer}>
+    				<Avatar>  				
+    					<img src={image} alt="profile" className={classes.image}/>
+    				</Avatar>
+    				<h4 style={{opacity: 0.6, margin: 'auto 5px'}}>{`${item.firstName} ${item.lastName}`}</h4>
+    				<span className={classes.email}>{` - ${item.email}`}</span>
+    			</div>
+    			<div className={classes.mobileEmail}>{item.email}</div>
+    			<p className={classes.message}>{item.message}</p>
+    		</div>
+      </div>
+    </DocumentTitle>
   )
 }
 
